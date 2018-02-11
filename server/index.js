@@ -28,14 +28,41 @@ const shopifyConfig = {
   host: SHOPIFY_APP_HOST,
   apiKey: SHOPIFY_APP_KEY,
   secret: SHOPIFY_APP_SECRET,
-  scope: ['write_orders, write_products'],
+  scope: ['read_orders, write_products'],
   shopStore: new MemoryStrategy(),
   afterAuth(request, response) {
     const { session: { accessToken, shop } } = request;
 
+   /*
     registerWebhook(shop, accessToken, {
       topic: 'app/uninstalled',
-      address: 'https://example-app.com/webhooks/uninstall',
+      address: 'https://post-sales-management.herokuapp.com/api/shopifyOrder',
+      format: 'json'
+    });
+
+     
+    registerWebhook(shop, accessToken, {
+      topic: 'orders/cancelled',
+      address: 'https://www.putsreq.com/oT60KPiEtFFhSgInCVSZ',
+      format: 'json'
+    });
+
+    registerWebhook(shop, accessToken, {
+      topic: 'orders/create',
+      address: 'https://www.putsreq.com/oT60KPiEtFFhSgInCVSZ',
+      format: 'json'
+    });
+
+    registerWebhook(shop, accessToken, {
+      topic: 'orders/updated',
+      address: 'https://www.putsreq.com/oT60KPiEtFFhSgInCVSZ',
+      format: 'json'
+    });
+    */
+
+    registerWebhook(shop, accessToken, {
+      topic: 'orders/paid',
+      address: 'https://post-sales-management.herokuapp.com/api/shopifyOrder',
       format: 'json'
     });
 

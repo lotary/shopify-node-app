@@ -5,3 +5,6 @@ node_modules/
 dump.rdb
 main.js
 db.sqlite3
+.env.example
+.vscode/launch.json
+
