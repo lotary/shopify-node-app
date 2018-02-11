@@ -141,12 +141,16 @@ app.get('/', withShop, function(request, response) {
   });
 });
 
-// Webhooks
-app.get('/order-create', withWebhook, (request, response) => {
+app.post('/order-create', withWebhook((error, request) => {
+  if (error) {
+    console.error(error);
+    return;
+  }
+
   console.log('We got a webhook!');
   console.log('Details: ', request.webhook);
   console.log('Body:', request.body);
-});
+}));
 
 // Error Handlers
 app.use(function(req, res, next) {
